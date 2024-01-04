@@ -1,0 +1,55 @@
+nohup: ignoring input
+[mixed + EM_PL] start exp ...
+P is:  {'GPU': '0', 'dataset': 'mixed', 'loss': 'EM_PL', 'val_set_variant': 'observed', 'test_set_variant': 'clean', 'pytorch_seed': 42, 'bsize': 8, 'lr': 1e-05, 'warmup_epoch': 0, 'unknown': 4, 'positive': 2, 'negative': 4, 'alpha': 0.1, 'beta_pos': 0.7, 'beta_neg': 0.0, 'partial': 0.0, 'txt_features': array([[-0.6033081 ,  0.8062998 ,  0.78520554, ..., -0.11636801,
+        -0.24701953,  0.39884427],
+       [-0.12893741,  0.16954896,  0.76026714, ..., -0.04079457,
+         0.06909657,  0.20632316],
+       [-0.7819838 ,  0.69574636,  0.54587615, ...,  0.11466762,
+        -0.2259234 ,  0.47960144],
+       ...,
+       [ 0.14929534,  0.32274196,  0.7213437 , ...,  0.5447507 ,
+        -0.73693186,  0.21227531],
+       [-0.39315364,  0.1695721 ,  0.62076366, ..., -0.0420146 ,
+         0.20866857, -0.11066367],
+       [-0.5182313 ,  0.02504381,  0.98405814, ...,  0.39532518,
+         0.05096377,  0.1003464 ]], dtype=float32), 'threshold': 0.3, 'temp': 0.01, 'k': 1.0, 'w': 0.95, 'seed': 42, 'use_pretrained': True, 'num_workers': 8, 'stop_metric': 'map', 'split_seed': 42, 'val_frac': 0.2, 'ss_seed': 999, 'ss_frac_train': 1.0, 'ss_frac_val': 1.0, 'train_set_variant': 'observed', 'num_epochs': 10, 'freeze_feature_extractor': False, 'use_feats': False, 'arch': 'resnet50', 'save_path': './results/mixedresnet50'}
+Using single positive labels for training.
+Using single positive labels for validation.
+training samples: 49011 total
+true positives: 138285 total, 2.82 per example on average.
+true negatives: 7213365 total, 147.18 per example on average.
+observed positives: 49011 total, 1.00 per example on average.
+observed negatives: 0 total, 0.00 per example on average.
+initializing image classifier
+start epoch [1/10] ...
+[1/10]   train:   0%|          | 0/6127 [00:00<?, ?it/s]> /data/scratch/ubuntu/tongchen/ctSPML/losses.py(190)loss_EM_PL()
+-> preds = batch['preds']
+(Pdb) [1/10]   train:   0%|          | 0/6127 [00:03<?, ?it/s]
+Traceback (most recent call last):
+  File "main_clip.py", line 426, in <module>
+    (feature_extractor, linear_classifier, logs) = execute_training_run(P, feature_extractor=None, linear_classifier=None)
+  File "main_clip.py", line 272, in execute_training_run
+    P, model, logger, best_weights_f = train(model, P, Z)
+  File "main_clip.py", line 141, in train
+    run_train_phase(model, P, Z, logger, P['epoch'], phase)
+  File "main_clip.py", line 66, in run_train_phase
+    batch = compute_batch_loss(batch, P, Z)
+  File "/data/scratch/ubuntu/tongchen/ctSPML/losses.py", line 398, in compute_batch_loss
+    loss_mtx, reg_loss = loss_functions[P['loss']](batch, P, Z)
+  File "/data/scratch/ubuntu/tongchen/ctSPML/losses.py", line 190, in loss_EM_PL
+    preds = batch['preds']
+  File "/data/scratch/ubuntu/tongchen/ctSPML/losses.py", line 190, in loss_EM_PL
+    preds = batch['preds']
+  File "/home/ubuntu/anaconda3/envs/ctSPML/lib/python3.8/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/home/ubuntu/anaconda3/envs/ctSPML/lib/python3.8/bdb.py", line 112, in dispatch_line
+    self.user_line(frame)
+  File "/home/ubuntu/anaconda3/envs/ctSPML/lib/python3.8/pdb.py", line 262, in user_line
+    self.interaction(frame, None)
+  File "/home/ubuntu/anaconda3/envs/ctSPML/lib/python3.8/pdb.py", line 357, in interaction
+    self._cmdloop()
+  File "/home/ubuntu/anaconda3/envs/ctSPML/lib/python3.8/pdb.py", line 322, in _cmdloop
+    self.cmdloop()
+  File "/home/ubuntu/anaconda3/envs/ctSPML/lib/python3.8/cmd.py", line 126, in cmdloop
+    line = input(self.prompt)
+OSError: [Errno 9] Bad file descriptor

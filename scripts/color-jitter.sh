@@ -1,0 +1,1 @@
+python -u main_clip.py -d pascal -l EM_PL -s 42
